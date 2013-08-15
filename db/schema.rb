@@ -15,8 +15,6 @@ ActiveRecord::Schema.define(version: 20130815194847) do
 
   create_table "teams", force: true do |t|
     t.string   "name"
-    t.integer  "game_id"
-    t.integer  "player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
