@@ -16,7 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'execjs'
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -31,6 +32,32 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+group :test, :development do
+  gem "rspec"
+  gem "rspec-rails"
+end
+
+#group :assets do
+  gem 'less-rails' #あとで必要と言われるのでこの行も追加
+  gem 'twitter-bootstrap-rails' #まずはこの行を追加
+#end
+
+gem "sorcery"
+
+#gem "protected_attributes"
+
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'letter_opener'
+  gem 'mail_view'
+  gem 'pry-rails'
+  gem 'quiet_assets'
+  gem 'sextant'
+  gem 'rb-readline'
+end
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
