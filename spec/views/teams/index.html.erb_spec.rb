@@ -5,9 +5,11 @@ describe "teams/index" do
     assign(:teams, [
       stub_model(Team,
         :name => "Name",
+        :created_at => DateTime.new
       ),
       stub_model(Team,
         :name => "Name",
+        :created_at => DateTime.new
       )
     ])
   end
