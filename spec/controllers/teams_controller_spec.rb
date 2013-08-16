@@ -31,10 +31,11 @@ describe TeamsController do
   let(:valid_session) { {} }
 
   describe "GET index" do
+    fixtures :teams
     it "assigns all teams as @teams" do
       team = Team.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:teams).should eq([team])
+      assigns(:teams).should eq([teams(:bears), teams(:sting), team])
     end
   end
 

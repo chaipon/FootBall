@@ -1,0 +1,12 @@
+mekun:
+  id: 1
+  name: "mekun"
+  team_id: 1
+souta:
+  id: 2
+  name: "souta"
+  team_id: 1
+nyago:
+  id: 3
+  name: "nyago"
+  team_id: 2

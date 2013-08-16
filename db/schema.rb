@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130815194847) do
+ActiveRecord::Schema.define(version: 20130815221612) do
+
+  create_table "players", force: true do |t|
+    t.string   "name",                         null: false
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.integer  "team_id",                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
+  end
+
+  add_index "players", ["remember_me_token"], name: "index_players_on_remember_me_token"
 
   create_table "teams", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
