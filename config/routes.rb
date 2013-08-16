@@ -1,4 +1,10 @@
 FootBall::Application.routes.draw do
+  get "players/new"
+  get "players/edit"
+  get "players/index"
+  get "players/create"
+  get "players/show"
+  resources :players
   resources :teams
 
   # The priority is based upon order of creation: first created -> highest priority.
