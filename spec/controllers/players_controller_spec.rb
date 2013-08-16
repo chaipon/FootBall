@@ -33,7 +33,7 @@ describe PlayersController do
   describe "GET 'create'" do
     it "returns http not success" do
       get 'create', player: {id: 10, password: "mekun1", password_confirmation: "mekun1", name: "mekun10", team_id: 1}
-      response.should_not be_success
+      response.should redirect_to controller: 'sessions', action: 'new', notice: "Singed up!"
     end
   end
 

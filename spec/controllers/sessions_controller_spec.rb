@@ -21,13 +21,22 @@ describe SessionsController do
     end
 =end
   end
-=begin
   describe "GET 'create'" do
-    it "returns http success" do
-      get 'create'
-      response.should be_success
+    describe "when password is invalid" do
+      it "returns http success" do
+        get 'create', name: "souta", password: "xxx"
+        response.should be_success
+      end
     end
-  end
+=begin
+    describe "when password is valid" do
+      it "returns http success" do
+        get 'create', name: "souta", password: "$2a$10$SAssHijzdbnWOL1mrzen2.ULyawM9HmhiGob.zY9ZHBas8yFRCm/."
+        response.should redirect_to "teams/1"
+      end
+    end
 =end
+    
+  end
 
 end

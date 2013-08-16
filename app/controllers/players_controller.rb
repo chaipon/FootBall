@@ -7,7 +7,7 @@ class PlayersController < ApplicationController
     @player = Player.new(player_params)
     if @player.save
       #redirect_to 'app/', :notice => "Singed up!"
-      redirect_to :action => :new, :notice => "Singed up!"
+      redirect_to :controller => :sessions, :action => :new, :notice => "Singed up!"
     else
       render :new
     end
