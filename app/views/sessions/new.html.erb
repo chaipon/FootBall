@@ -1,0 +1,19 @@
+<h1>Sessions#new</h1>
+
+<%= form_tag sessions_path do %>
+  <div class="field">
+    <%= label_tag :name %>
+    <%= text_field_tag :name, params[:name] %>
+  </div>
+  <div class="field">
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+  <div class="field">
+    <%= check_box_tag :remenber_me, 1, params[:remenber_me] %>
+    <%= label_tag :remenber_me %>
+  </div>
+  <div class="actions"><%= submit_tag "ログイン" %></div>
+<% end %>
+
+

@@ -1,10 +1,15 @@
 FootBall::Application.routes.draw do
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+  get "signup" => "players#new", :as => "signup"
+  get "sessions/new"
   get "players/new"
   get "players/edit"
   get "players/index"
   get "players/create"
   get "players/show"
   resources :players
+  resources :sessions
   resources :teams
 
   # The priority is based upon order of creation: first created -> highest priority.
