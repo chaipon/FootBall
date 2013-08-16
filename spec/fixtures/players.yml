@@ -10,3 +10,19 @@ nyago:
   id: 3
   name: "nyago"
   team_id: 2
+chie:
+  id: 4
+  name: "chie"
+  team_id: 1
+mako:
+  id: 5
+  name: "mako"
+  team_id: 2
+keita:
+  id: 6
+  name: "keita"
+  team_id: 1
+ben:
+  id: 7
+  name: "ben"
+  team_id: 2

@@ -31,7 +31,7 @@ describe TeamsController do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    fixtures :teams
+    fixtures :teams, :players
     it "assigns all teams as @teams" do
       team = Team.create! valid_attributes
       get :index, {}, valid_session
@@ -40,10 +40,17 @@ describe TeamsController do
   end
 
   describe "GET show" do
+    fixtures :teams
     it "assigns the requested team as @team" do
       team = Team.create! valid_attributes
       get :show, {:id => team.to_param}, valid_session
       assigns(:team).should eq(team)
+    end
+    it "should display all players in the team" do
+      get :show, {:id => 1}, valid_session
+      assigns(:players).each do |player|
+        player.team_id.should == 1
+      end
     end
   end
 

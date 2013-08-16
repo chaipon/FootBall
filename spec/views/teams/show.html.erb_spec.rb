@@ -5,6 +5,7 @@ describe "teams/show" do
     @team = assign(:team, stub_model(Team,
       :name => "Name",
     ))
+    @players = @team.players
   end
 
   it "renders attributes in <p>" do
