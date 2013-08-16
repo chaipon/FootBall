@@ -1,13 +1,15 @@
 class SessionsController < ApplicationController
   def new
+    if current_user
+      redirect_to "/teams/#{current_user.team_id}"
+    end
   end
 
-
   def create
-    user = login(params[:name], params[:password], params[:remenber_me])
-    if user
+    player = login(params[:name], params[:password], params[:remenber_me])
+    if player
       #redirect_back_or_to '/players/', :notice => "Logged in!"
-      redirect_back_or_to :controller => 'players', :action => 'index' , :notice => "Logged in!"
+      redirect_back_or_to "/teams/#{player.team_id}", :notice => "Logged in!"
     else
       flash.now.alert = "Name or password was invalid"
       render :new
