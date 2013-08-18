@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @players = @team.players
-    p @players
+    @games = @team.games
   end
 
   # GET /teams/new
