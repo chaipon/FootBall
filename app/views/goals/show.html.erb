@@ -1,24 +1,27 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Goal -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Time:</strong>
-  <%= @goal.time %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:time) %>:</strong></dt>
+  <dd><%= @goal.time %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:game_id) %>:</strong></dt>
+  <dd><%= @goal.game_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:player_id) %>:</strong></dt>
+  <dd><%= @goal.player_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_our_goal) %>:</strong></dt>
+  <dd><%= @goal.is_our_goal %></dd>
+</dl>
 
-<p>
-  <strong>Game:</strong>
-  <%= @goal.game_id %>
-</p>
-
-<p>
-  <strong>Player:</strong>
-  <%= @goal.player_id %>
-</p>
-
-<p>
-  <strong>Is our goal:</strong>
-  <%= @goal.is_our_goal %>
-</p>
-
-<%= link_to 'Edit', edit_goal_path(@goal) %> |
-<%= link_to 'Back', goals_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              goals_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_goal_path(@goal), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              goal_path(@goal),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

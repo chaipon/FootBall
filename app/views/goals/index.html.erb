@@ -1,33 +1,42 @@
-<h1>Listing goals</h1>
-
-<table>
+<%- model_class = Goal -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Time</th>
-      <th>Game</th>
-      <th>Player</th>
-      <th>Is our goal</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:time) %></th>
+      <th><%= model_class.human_attribute_name(:game_id) %></th>
+      <th><%= model_class.human_attribute_name(:player_id) %></th>
+      <th><%= model_class.human_attribute_name(:is_our_goal) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @goals.each do |goal| %>
       <tr>
+        <td><%= link_to goal.id, goal_path(goal) %></td>
         <td><%= goal.time %></td>
         <td><%= goal.game_id %></td>
         <td><%= goal.player_id %></td>
         <td><%= goal.is_our_goal %></td>
-        <td><%= link_to 'Show', goal %></td>
-        <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
-        <td><%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l goal.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_goal_path(goal), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      goal_path(goal),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Goal', new_goal_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_goal_path,
+            :class => 'btn btn-primary' %>
