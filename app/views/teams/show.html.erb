@@ -18,7 +18,7 @@
   <tbody>
     <% @games.each do |game| %>
       <tr>
-        <td><%= link_to game.date, game_path(game) %></td>
+        <td><%= link_to game.get_date_str, game_path(game) %></td>
         <td><%= game.vs_team %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),

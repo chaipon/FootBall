@@ -22,4 +22,7 @@ class Game < ActiveRecord::Base
     goals = self.goals
     goals.order(:time)
   end
+  def get_date_str
+    date.strftime('%y/%m/%d %H:%M')
+  end
 end
