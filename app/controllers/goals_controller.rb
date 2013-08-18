@@ -23,6 +23,10 @@ class GoalsController < ApplicationController
 
   # GET /goals/1/edit
   def edit
+    @goal = Goal.find(params[:id])
+    @game_id = @goal.game_id
+    game = Game.find(@game_id)
+    @team = Team.find(game.team_id)
   end
 
   # POST /goals
@@ -48,7 +52,8 @@ class GoalsController < ApplicationController
   def update
     respond_to do |format|
       if @goal.update(goal_params)
-        format.html { redirect_to @goal, notice: 'Goal was successfully updated.' }
+        format.html { redirect_to :controller => :games, :action => 'show', 
+           :id => @goal.game.id, notice: 'Goal was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
