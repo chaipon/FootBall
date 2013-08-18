@@ -1,0 +1,25 @@
+<%= form_for @game, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :vs_team, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :vs_team, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :date, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <% if @team_id %>
+      <%= f.hidden_field :team_id, :value => @team_id %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                games_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+first_game:
+  id: 1
+  date: Date.now
+  vs_team_name: "shuyoukai"
+  team_id: 1
+second_game:
+  id: 2
+  date: Date.now + 7
+  vs_team_name: "max"
+  team_id: 1
