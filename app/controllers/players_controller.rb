@@ -1,5 +1,4 @@
 class PlayersController < ApplicationController
-  before_filter :require_login
   def new
     @player = Player.new
     @teams = Team.all
@@ -15,20 +14,29 @@ class PlayersController < ApplicationController
     end
   end
   def index
-    @players = Player.all
+    unless current_user
+      redirect_to :controller => :sessions, :action => :new
+    else
+      @players = Player.all
 
-    respond_to do |format|
-      format.html
+      respond_to do |format|
+        format.html
+      end
     end
   end
   def edit
     @player = Player.find(params[:id])
+    @teams = Team.all
   end
 
   def show
-    @player = Player.find(params[:id])
-    respond_to do |format|
-      format.html
+    unless current_user
+      redirect_to :controller => :sessions, :action => :new 
+    else
+      @player = Player.find(params[:id])
+      respond_to do |format|
+        format.html
+      end
     end
   end
   private
