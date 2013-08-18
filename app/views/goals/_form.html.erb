@@ -15,9 +15,9 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :is_our_goal, :class => 'control-label' %>
+    <%= f.label "敵ゴール", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :is_our_goal, :class => 'text_field' %>
+      <%= f.check_box :is_our_goal, {:class => 'chk'}, '0', '1' %>
     </div>
   </div>
 
