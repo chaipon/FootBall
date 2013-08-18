@@ -4,15 +4,34 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:vs_team) %>:</strong></dt>
-  <dd><%= @game.vs_team %></dd>
   <dt><strong><%= model_class.human_attribute_name(:date) %>:</strong></dt>
-  <dd><%= @game.date %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:team_id) %>:</strong></dt>
-  <dd><%= @game.team_id %></dd>
+  <dd><%= @game.date.strftime('%y/%m/%d %H:%M') %></dd>
+  <dt><strong><%= model_class.human_attribute_name('対戦相手') %>:</strong></dt>
+  <dd><%= @game.vs_team %></dd>
+  <dt><strong><%= model_class.human_attribute_name('試合結果') %>:</strong></dt>
+  <dd><%= @game.get_our_goal_counts %> 対 <%= @game.get_your_goal_counts %> </dd>
+  <dt><strong><%= model_class.human_attribute_name('得点者') %>:</strong></dt>
+  <dd>
+    <% @game.get_our_goal_players.each do |goal_player| %>
+      <%= goal_player %> 
+    <% end %>
+  </dd>
+</dl>
+<dl class="dl-horizontal">
+  <dd><h5> ゴール詳細 </h5></dd>
+  <% @game.sorted_goals.each do |goal| %>
+    <dd><%= goal.time %>分 
+    <% if goal.is_our_goal %>
+      <%= goal.player.name %></dd>
+    <% else %>
+      <%= '敵ゴール' %></dd>
+    <% end %>
+  <% end %>
 </dl>
 
+
 <div class="form-actions">
+  <%= link_to 'New Goal', new_goal_path(:game_id => @game.id) %>
   <%= link_to t('.back', :default => t("helpers.links.back")),
               games_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),

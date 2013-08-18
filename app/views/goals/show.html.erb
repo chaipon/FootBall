@@ -13,6 +13,17 @@
   <dt><strong><%= model_class.human_attribute_name(:is_our_goal) %>:</strong></dt>
   <dd><%= @goal.is_our_goal %></dd>
 </dl>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:time) %>:</strong></dt>
+  <dd><%= @goal.time %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:game_id) %>:</strong></dt>
+  <dd><%= @goal.game_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:player_id) %>:</strong></dt>
+  <dd><%= @goal.player_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_our_goal) %>:</strong></dt>
+  <dd><%= @goal.is_our_goal %></dd>
+</dl>
+
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
