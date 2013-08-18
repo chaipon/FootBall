@@ -2,6 +2,7 @@ class PlayersController < ApplicationController
   before_filter :require_login
   def new
     @player = Player.new
+    @teams = Team.all
   end
 
   def create
