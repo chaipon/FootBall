@@ -9,7 +9,7 @@
       <th><%= model_class.human_attribute_name(:vs_team) %></th>
       <th><%= model_class.human_attribute_name(:date) %></th>
       <th><%= model_class.human_attribute_name(:team_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%#= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -18,9 +18,9 @@
       <tr>
         <td><%= link_to game.id, game_path(game) %></td>
         <td><%= game.vs_team %></td>
-        <td><%= game.date %></td>
+        <td><%= game.get_date_str %></td>
         <td><%= game.team_id %></td>
-        <td><%=l game.created_at %></td>
+        <td><%#=l game.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_game_path(game), :class => 'btn btn-mini' %>
