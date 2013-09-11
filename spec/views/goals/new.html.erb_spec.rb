@@ -4,9 +4,9 @@ describe "goals/new" do
   before(:each) do
     assign(:goal, stub_model(Goal,
       :time => 1,
-      :game_id => nil,
+      :game_id => 1,
       :player_id => nil,
-      :is_our_goal => ""
+      :is_our_goal => "true"
     ).as_new_record)
   end
 

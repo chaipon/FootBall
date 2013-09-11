@@ -4,6 +4,7 @@ describe "games/show" do
   before(:each) do
     @game = assign(:game, stub_model(Game,
       :vs_team => "Vs Team",
+      :date => Time.now,
       :goal_id => nil,
       :player_id => nil
     ))
