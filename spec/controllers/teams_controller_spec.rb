@@ -20,6 +20,8 @@ require 'spec_helper'
 
 describe TeamsController do
 
+  include Sorcery::TestHelpers::Rails
+
   # This should return the minimal set of attributes required to create a valid
   # Team. As you add validations to Team, be sure to
   # adjust the attributes here as well.
@@ -30,8 +32,18 @@ describe TeamsController do
   # TeamsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  fixtures :teams, :players, :games
+  before(:each) do
+    @user = players(:souta)
+    login_user
+  end
+
+  after(:each) do
+    logout_user
+  end
+
+
   describe "GET index" do
-    fixtures :teams, :players
     it "assigns all teams as @teams" do
       team = Team.create! valid_attributes
       get :index, {}, valid_session

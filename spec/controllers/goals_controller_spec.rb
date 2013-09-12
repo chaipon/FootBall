@@ -20,15 +20,27 @@ require 'spec_helper'
 
 describe GoalsController do
 
+  include Sorcery::TestHelpers::Rails
   # This should return the minimal set of attributes required to create a valid
   # Goal. As you add validations to Goal, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "time" => "1" } }
+  let(:valid_attributes) { { "time" => "1", "game_id" => 1} }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # GoalsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+
+  fixtures :teams, :players, :games
+  before(:each) do
+    @user = players(:souta)
+    login_user
+  end
+
+  after(:each) do
+    logout_user
+  end
 
   describe "GET index" do
     it "assigns all goals as @goals" do

@@ -20,6 +20,7 @@ require 'spec_helper'
 
 describe GamesController do
 
+  include Sorcery::TestHelpers::Rails
   # This should return the minimal set of attributes required to create a valid
   # Game. As you add validations to Game, be sure to
   # adjust the attributes here as well.
@@ -29,6 +30,17 @@ describe GamesController do
   # in order to pass any filters (e.g. authentication) defined in
   # GamesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  fixtures :teams, :players
+  before(:each) do
+    @user = players(:souta)
+    login_user
+  end
+
+  after(:each) do
+    logout_user
+  end
+
 
   describe "GET index" do
     it "assigns all games as @games" do
