@@ -1,7 +1,18 @@
 require 'spec_helper'
 
 describe PlayersController do
+  include Sorcery::TestHelpers::Rails
+
   fixtures :players, :teams
+  before(:each) do
+    @user = players(:souta)
+    login_user
+  end
+
+  after(:each) do
+    logout_user
+  end
+
 
   describe "GET 'new'" do
     it "returns http success" do

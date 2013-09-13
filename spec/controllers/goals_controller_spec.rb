@@ -59,8 +59,9 @@ describe GoalsController do
   end
 
   describe "GET new" do
+    fixtures :games
     it "assigns a new goal as @goal" do
-      get :new, {}, valid_session
+      get :new, {game_id: games(:second_game).id}, valid_session
       assigns(:goal).should be_a_new(Goal)
     end
   end
@@ -89,7 +90,8 @@ describe GoalsController do
 
       it "redirects to the created goal" do
         post :create, {:goal => valid_attributes}, valid_session
-        response.should redirect_to(Goal.last)
+        response.should redirect_to(controller: :games, action: :show, id: valid_attributes['game_id'], 
+                                     notice: "Goal was successfully created.")
       end
     end
 
@@ -118,8 +120,8 @@ describe GoalsController do
         # specifies that the Goal created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Goal.any_instance.should_receive(:update).with({ "time" => "1" })
-        put :update, {:id => goal.to_param, :goal => { "time" => "1" }}, valid_session
+        Goal.any_instance.should_receive(:update).with({ "time" => "1" , "game_id" => "1"})
+        put :update, {:id => goal.to_param, :goal => { "time" => "1", "game_id" => "1" }}, valid_session
       end
 
       it "assigns the requested goal as @goal" do
@@ -131,7 +133,8 @@ describe GoalsController do
       it "redirects to the goal" do
         goal = Goal.create! valid_attributes
         put :update, {:id => goal.to_param, :goal => valid_attributes}, valid_session
-        response.should redirect_to(goal)
+        response.should redirect_to(controller: :games, action: :show, id: valid_attributes['game_id'], 
+                                     notice: 'Goal was successfully updated.')
       end
     end
 
