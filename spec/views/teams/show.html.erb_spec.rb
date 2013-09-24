@@ -16,6 +16,7 @@ describe "teams/show" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/Bears/)
     rendered.should match(/shuyukai/)
+    rendered.should match(/daimajin/)
     rendered.should match(/max/)
   end
 end
