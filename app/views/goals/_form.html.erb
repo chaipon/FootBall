@@ -17,9 +17,7 @@
   <div class="control-group">
     <%= f.label "味方ゴール", :class => 'control-label' %>
     <div class="controls">
-      <% is_goal = true %>
-      <% is_goal = false if @goal.is_our_goal == false %>
-      <%= f.check_box :is_our_goal, {:class => 'chk', :value => 1, :checked => is_goal}, '1', '0'  %>
+      <%= f.check_box :is_our_goal, {:class => 'chk', :value => 1, :checked => @goal.is_our_goal}, '1', '0'  %>
     </div>
   </div>
 

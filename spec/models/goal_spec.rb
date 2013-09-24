@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Goal do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should new goal is our goal." do
+    goal = Goal.new
+    goal.is_our_goal.should == true
+  end
 end
