@@ -17,8 +17,7 @@ class PlayersController < ApplicationController
     unless current_user
       redirect_to :controller => :sessions, :action => :new
     else
-      @players = Player.all
-
+      @players = current_user.get_team_players
       respond_to do |format|
         format.html
       end

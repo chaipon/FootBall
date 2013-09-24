@@ -17,4 +17,9 @@ describe Player do
   it "should be belong to team" do
     @player.team.should == teams(:bears)
   end
+  it "should set players who are teams of logon player" do
+    @player.get_team_players.each do |player|
+      player.team.should == teams(:bears)
+    end
+  end
 end

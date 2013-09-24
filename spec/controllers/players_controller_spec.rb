@@ -4,15 +4,6 @@ describe PlayersController do
   include Sorcery::TestHelpers::Rails
 
   fixtures :players, :teams
-  before(:each) do
-    @user = players(:souta)
-    login_user
-  end
-
-  after(:each) do
-    logout_user
-  end
-
 
   describe "GET 'new'" do
     it "returns http success" do
@@ -28,6 +19,15 @@ describe PlayersController do
   end
 
   describe "GET 'edit'" do
+    before(:each) do
+      @user = players(:mekun)
+      login_user
+    end
+
+    after(:each) do
+      logout_user
+    end
+
     it "returns http success" do
       get 'edit', id: 1
       response.should be_success
@@ -35,9 +35,23 @@ describe PlayersController do
   end
 
   describe "GET 'index'" do
-    it "returns http success" do
+    before(:each) do
+      @user = players(:mekun)
+      login_user
       get 'index'
+    end
+
+    after(:each) do
+      logout_user
+    end
+
+    it "returns http success" do
       response.should be_success
+    end
+    it "should set players who are teams of logon player" do
+      assigns(:players).each do |player|
+        player.team_id.should == players(:mekun).id
+      end
     end
   end
 
@@ -49,6 +63,15 @@ describe PlayersController do
   end
 
   describe "GET 'show'" do
+    before(:each) do
+      @user = players(:mekun)
+      login_user
+    end
+
+    after(:each) do
+      logout_user
+    end
+
     it "returns http success" do
       get 'show', id:1
       response.should be_success

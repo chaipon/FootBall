@@ -10,4 +10,7 @@ class Player < ActiveRecord::Base
   has_many :games
   has_many :goals
 
+  def get_team_players
+    self.team.players
+  end
 end
