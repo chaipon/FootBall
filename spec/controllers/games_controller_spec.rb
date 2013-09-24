@@ -44,9 +44,10 @@ describe GamesController do
 
   describe "GET index" do
     it "assigns all games as @games" do
-      game = Game.create! valid_attributes
+      Game.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:games).should eq([game])
+      games = Game.all
+      assigns(:games).should eq(games)
     end
   end
 
