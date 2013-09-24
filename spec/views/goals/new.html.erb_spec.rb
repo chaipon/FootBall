@@ -1,12 +1,15 @@
 require 'spec_helper'
 
 describe "goals/new" do
+  fixtures :teams, :games, :players
   before(:each) do
+    @game = games(:second_game)
+    @team = Team.find(@game.team_id)
     assign(:goal, stub_model(Goal,
       :time => 1,
-      :game_id => 1,
+      :game_id => @game.team_id,
       :player_id => nil,
-      :is_our_goal => "true"
+      :is_our_goal => true
     ).as_new_record)
   end
 
@@ -16,9 +19,12 @@ describe "goals/new" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form[action=?][method=?]", goals_path, "post" do
       assert_select "input#goal_time[name=?]", "goal[time]"
-      assert_select "input#goal_game_id[name=?]", "goal[game_id]"
-      assert_select "input#goal_player_id[name=?]", "goal[player_id]"
-      assert_select "input#goal_is_our_goal[name=?]", "goal[is_our_goal]"
+      assert_select "input#goal_game_id[name=?][type=?]", "goal[game_id]", "hidden"
+      assert_select "select#goal_player_id[name=?]", "goal[player_id]"
+      assert_select "option", "nyago"
+      assert_select "option", "mako"
+      assert_select "option", "ben"
+      assert_select "input#goal_is_our_goal[name=?][value=?]", "goal[is_our_goal]", "1"
     end
   end
 end
