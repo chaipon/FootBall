@@ -63,6 +63,7 @@ describe GoalsController do
     it "assigns a new goal as @goal" do
       get :new, {game_id: games(:second_game).id}, valid_session
       assigns(:goal).should be_a_new(Goal)
+      assigns(:goal).is_our_goal.should eq(nil)
     end
   end
 

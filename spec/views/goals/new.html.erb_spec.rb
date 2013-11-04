@@ -6,10 +6,10 @@ describe "goals/new" do
     @game = games(:second_game)
     @team = Team.find(@game.team_id)
     assign(:goal, stub_model(Goal,
-      :time => 1,
+      :time => nil,
       :game_id => @game.team_id,
       :player_id => nil,
-      :is_our_goal => true
+      :is_our_goal => nil
     ).as_new_record)
   end
 
@@ -24,7 +24,7 @@ describe "goals/new" do
       assert_select "option", "nyago"
       assert_select "option", "mako"
       assert_select "option", "ben"
-      assert_select "input#goal_is_our_goal[name=?][value=?]", "goal[is_our_goal]", "1"
+      assert_select "input#goal_is_our_goal[name=?][type=?][value=?]", "goal[is_our_goal]","checkbox", "1"
     end
   end
 end
