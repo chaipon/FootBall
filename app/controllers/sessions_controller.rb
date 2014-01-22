@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   def create
     player = login(params[:name], params[:password], params[:remenber_me])
     if player
-      redirect_to "/teams/#{player.team_id}", :notice => "Logged in!"
+      redirect_to "/teams/#{player.team_id}", :notice => "Logged in! #{player.name}"
       #redirect_back_or_to "/teams/#{player.team_id}", :notice => "Logged in!"
     else
       flash.now.alert = "Name or password was invalid"

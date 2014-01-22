@@ -57,9 +57,10 @@ class GamesController < ApplicationController
   # DELETE /games/1
   # DELETE /games/1.json
   def destroy
+    team = @game.team
     @game.destroy
     respond_to do |format|
-      format.html { redirect_to games_url }
+      format.html { redirect_to team_path(team) }
       format.json { head :no_content }
     end
   end
