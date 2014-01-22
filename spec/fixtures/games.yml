@@ -1,20 +1,20 @@
 first_game:
   id: 1
-  date: <%= Time.now.to_s :db %>
+  date: <%= DateTime.parse("2012/11/21 13:00").to_s :db %>
   vs_team: "shuyukai"
   team_id: 1
 second_game:
   id: 2
-  date: <%= (Time.now+7).to_s :db %>
+  date: <%= DateTime.parse("2013/11/21 13:00").to_s :db %>
   vs_team: "max"
   team_id: 2
 third_game:
   id: 3
-  date: <%= (Time.now+8).to_s :db %>
+  date: <%= DateTime.parse("2014/11/21 13:00").to_s :db %>
   vs_team: "daimajin"
   team_id: 1
 fourth_game:
   id: 4
-  date: <%= (Time.now+8).to_s :db %>
+  date: <%= DateTime.parse("2015/11/21 13:00").to_s :db %>
   vs_team: "max"
   team_id: 1

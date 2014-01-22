@@ -5,10 +5,21 @@ class Game < ActiveRecord::Base
   belongs_to :team
   def get_our_goal_players
     goal_players = []
-    self.goal_players.each do |goal_player|
-      goal_players.push goal_player.name unless goal_player.id == 0
+    goals = self.goals
+    our_goals = goals.where(:is_our_goal => true).order(:time)
+    our_goals.each do |goal|
+      goal_players.push Player.find(goal.player_id).name
     end
     goal_players.uniq
+  end
+  def get_goal_counts_by_name(name)
+    counts = 0
+    goals = self.goals
+    our_goals = goals.where(:is_our_goal => true)
+    our_goals.each do |goal|
+      counts += 1 if Player.find(goal.player_id).name == name
+    end
+    counts
   end
   def get_our_goal_counts
     goals = self.goals

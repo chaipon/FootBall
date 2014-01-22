@@ -1,20 +1,22 @@
 require 'spec_helper'
 
 describe "games/show" do
+  fixtures :teams, :players, :games, :goals
   before(:each) do
-    @game = assign(:game, stub_model(Game,
-      :vs_team => "Vs Team",
-      :date => Time.now,
-      :goal_id => nil,
-      :player_id => nil
-    ))
+    @game = Game.find(1)
+    p @game
   end
 
   it "renders attributes in <p>" do
     render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    rendered.should match(/Vs Team/)
-    rendered.should match(//)
-    rendered.should match(//)
+    rendered.should match(/対戦相手/)
+    rendered.should match(/shuyukai/)
+    rendered.should match(/12\/11\/21 13:00/)
+    rendered.should match(/mekun/)
+    rendered.should match(/10分/)
+    rendered.should match(/souta/)
+    rendered.should match(/12分/)
+    rendered.should match(/敵ゴール/)
+    rendered.should match(/45分/)
   end
 end

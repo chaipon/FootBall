@@ -13,7 +13,12 @@
   <dt><strong><%= model_class.human_attribute_name('得点者') %>:</strong></dt>
   <dd>
     <% @game.get_our_goal_players.each do |goal_player| %>
-      <%= goal_player %> 
+      <% goals = @game.get_goal_counts_by_name(goal_player) %>
+      <% if goals > 1 %>
+        <%= goal_player + 'x' + goals.to_s %>
+      <% else %>
+        <%= goal_player %>
+      <% end %>
     <% end %>
   </dd>
 </dl>
